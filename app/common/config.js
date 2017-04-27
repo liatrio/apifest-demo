@@ -1,5 +1,4 @@
-// http://127.0.0.1:6001/api/
-// http://bt-voice.mybluemix.net/api/
+
 var appConfig = {
     title: "Corporate Directory",
     lang: "en",

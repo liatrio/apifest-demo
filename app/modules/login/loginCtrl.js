@@ -46,10 +46,6 @@ function ($rootScope, $scope, $state, $location, loginService, Flash, apiService
     vm.register = function () {
         if (vm.setUser.confirmPassword == vm.setUser.Password){
             Flash.create('danger', 'Sirry Cant register at the moment', 'large-text');
-//            loginService.registerUser(vm.setUser).then(function (response) {
-//                if (response.message == 'success')
-//                    console.log('after post>>',response);
-//            });
         }
     };
 

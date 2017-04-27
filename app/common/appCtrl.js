@@ -24,24 +24,7 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings) {
                     icon: "book",
                     state: "dashboard"
                 }
-                /*
-                ,
-                {
-                    title: "Add",
-                    icon: "plus",
-                    state: "contact"
-                },
-                {
-                    title: "View Contacts",
-                    icon: "book",
-                    state: "view"
-                },
-                {
-                    title: "Account",
-                    icon: "book",
-                    state: "Account"
-                }
-                */
+               
             ];
 
             //set the theme selected
