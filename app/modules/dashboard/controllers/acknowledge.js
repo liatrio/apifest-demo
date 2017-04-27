@@ -31,6 +31,25 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
             
             vm.viewMap = function (latitude, longitude) {
                 console.log(latitude + " - " + longitude);
+                
+                var div = document.getElementById('iframeDiv');
+
+                div.innerHTML = div.innerHTML + "<iframe id='iframe' src='https://maps.google.com/maps?q=" + longitude + "," + latitude + "&hl=es;z=14&amp;output=embed' height='450' frameborder='0' style='border:0;width:100%;' allowfullscreen></iframe>";
+                
+                var modal = document.getElementById('myModal');
+
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+                modal.style.display = "block";
+
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        var div = document.getElementById('iframeDiv');
+                        div.innerHTML = "";
+                        modal.style.display = "none";
+                    }
+                }
             };
 
             $scope.transactions = 0;
