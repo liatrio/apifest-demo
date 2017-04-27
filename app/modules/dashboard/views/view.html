@@ -1,0 +1,139 @@
+<section class="content-header">
+    
+    <h1>
+        View Contacts
+    </h1>
+    
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="active">View Contacts</li>
+    </ol>
+
+</section>
+
+<div class = "container-fluid">
+     
+         
+    <section class="content">
+
+    <!-- row -->
+    <div class="row">
+       <div class="col-md-6">
+           
+           <select id="group_names" ng-model="data.group_names"  ng-change="onGroupChange()" class="form-control">
+               <option value="">-- Select Group --</option>
+               <option value="{{group._id}}" ng-repeat="group in groupName" on-finish-render="ngRepeatFinished">{{group.name}}</option>
+               
+           </select>
+        
+        </div>
+         
+        <div class="pull-right">
+            
+            <md-button class="md-raised md-warn" ng-click="vm.deleteGroup(data.group_names)">Remove Group <i class="fa fa-trash-o"></i></md-button>
+        
+          </div>
+    </div> <!-- /.row -->
+        
+        
+        <br>
+    
+    <div class="box box-info" ng-show="data.group_names">
+            
+        <div class="container-fluid">
+            
+            <table class="table table-list-search">
+                <tbody>
+                    <tr>
+                        <td><h4><b>Name</b></h4></td>
+                        <td><h4><b>Phone No</b></h4></td>
+                        <td><b></b></td>
+                    </tr>
+                    <!--  -->
+                    <tr ng-repeat= "user in users.details" ng-if="user.group_id === data.group_names" on-finish-render="ngRepeatFinished">
+                        <td>{{user.name}}</td>
+                        <td>{{user.phone}}</td>
+                        <td><md-button class="md-raised md-warn" type="button" ng-click="vm.deleteUser(user._id, user.name);">Delete</md-button></td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+
+    </div>                      
+
+                             
+
+      
+    
+</section><!-- /.content -->
+
+</div>
+<!-- Main content -->
+
+<div class="modal fade modal-notify" my-modal id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <img src="https://cdn3.iconfinder.com/data/icons/gray-toolbar-4/512/thumb_up-512.png" class="user-image" alt="User Image" align="center" style="width:50px;height:50px;"/>
+                </div>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -60px;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </br>
+                
+                <p for="message-text" class="control-label"><b><span ng-bind="name"></span></b></p>
+
+                <md-button class="md-raised md-warn pull-right" data-dismiss="modal">Close</md-button>
+                
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade modal-notify" noresponce id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <img src="http://southernlightfiber.com/wp-content/themes/so-light-3pt3c/_/img/icon-face-sorry.png" class="user-image" alt="User Image" align="center" style="width:50px;height:50px;"/>
+                </div>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -60px;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </br>
+                
+                <p for="message-text" class="control-label"><b>Sorry no result Found</b></p>
+
+                <md-button class="md-raised md-warn pull-right" data-dismiss="modal" style="margin-top:20px;margin-left:40px;">Close</md-button>
+                
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="modal modal-static fade" my-modal-process id="processing-modal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <img src="http://melaha2016.ainegypt.org/images/pg.gif" style="width:85px;height:71px;" class="icon" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

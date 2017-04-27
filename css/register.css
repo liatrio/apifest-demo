@@ -1,0 +1,23 @@
+.verticalLine {
+    border-left: thick solid #E38E4A;
+    padding-left: 5vw;
+    -webkit-border-image: url(http://pncapix.com/assets/img/side_seperater_bar_desktop.png) 80 round; /* Safari 3.1-5 */
+    -o-border-image: url(http://pncapix.com/assets/img/side_seperater_bar_desktop.png) 80 round; /* Opera 11-12.1 */
+    border-image: url(http://pncapix.com/assets/img/side_seperater_bar_desktop.png) 80 round;
+}
+
+.thelogo{
+    text-align: center;
+}
+
+.img{
+    width:10Opx;
+}
+
+.custom{
+    padding-top: 80px;
+}
+
+#map {
+    height: 100%;
+}

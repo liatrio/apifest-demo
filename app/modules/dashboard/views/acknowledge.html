@@ -1,0 +1,214 @@
+<section class="content-header">
+    
+    <h1 style="color: #439ad5;">
+        Dashboard
+    </h1>
+    
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="active">Details</li>
+    </ol>
+
+</section>
+
+
+
+<div class = "container-fluid">
+     
+         
+    <section class="content">
+        
+        <!-- row -->
+        <div class="row">
+           <div class="col-md-6">
+
+            </div>
+
+            <div class="pull-right" ng-show="vm.showBroadcast == 2"  ng-if="vm.showBroadcast == 2" style="margin-top:10px;">
+
+                <img src="http://changelives.org/wp-content/uploads/2016/04/back-button.jpg" style="width:90px; height:30px; margin-right:50px;" class="user-image" alt="User Image" ng-click="vm.showBroadcast = 1"/>
+
+            </div>
+
+        </div> <!-- /.row -->
+
+
+            <br>
+
+        <div class="box box-info" ng-show="vm.showBroadcast == 1">
+
+            <div class="container-fluid">
+
+                <table class="table table-list-search">
+                    <tbody>
+                        <tr>
+                            <td><h4><b>Account Ref Number</b></h4></td>
+                            <td><h4><b>Account Type</b></h4></td>
+                            <td><h4><b>Bank Name</b></h4></td>
+                            <td><h4><b>Balance</b></h4></td>
+                            <td><b></b></td>
+                        </tr>
+                        
+                        <!--  -->
+                        <tr ng-repeat = "accountDetail in accountDetails" on-finish-render="ngRepeatFinished">
+                            <td>{{accountDetail.accountRefNumber}}</td>
+                            <td>{{accountDetail.accountType.accountType}}</td>
+                            <td>{{accountDetail.businessUnit.bank.bankName}}</td>
+                            <td>{{accountDetail.balance}}</td>
+                            <td><md-button class="md-raised md-warn" type="button" ng-click="vm.viewTransaction(accountDetail.accountId)">View Transaction Details</md-button></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="row" ng-show="vm.showBroadcast == 2" ng-if="vm.showBroadcast == 2">
+            <div class="col-md-12">
+                
+                
+                <!-- row -->
+                <div class="row">
+                   <div class="col-sm-6 col-md-6 col-lg-6">
+                       
+                       <div class="box">
+                           <div id="chartIdType" class="customChart"></div>
+                           <h4 class="website-text">Transactions by Type</h4>
+                       </div>
+
+<!--
+                        <select name="dropdown" ng-model="vm.selectedStatus" ng-change="onStatusChange()" class="form-control">
+                            <option value="">Show All</option>
+                            <option value="Book Stores">bookStores</option>
+                            <option value="Car Rental">carRental</option>
+                            <option value="Fast Food Restaurants">fastFoodRestaurants</option>
+                            <option value="Drug Stores and Pharmacies">drugStoresAndPharmacies</option>
+                        </select>
+                        </br></br>
+-->
+                       
+<!--                       <div id="chartIdType" class="customChart"></div>-->
+
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        
+                        <div class="box">
+                           <div id="chartId" class="customChart"></div>
+                           <h4 class="website-text">Transactions by Category</h4>
+                       </div>
+
+<!--                        <div id="chartId" class="customChart"></div>-->
+
+                    </div>
+
+                </div>
+        
+                <div class="box box-info">
+
+                    <table class="table table-list-search">
+                        <tbody>
+                            <tr>
+                                <td><h4><b>Transaction Date</b></h4></td>
+                                <td><h4><b>Transaction Type</b></h4></td>
+                                <td><h4><b>To Account Number</b></h4></td>
+                                <td><h4><b>Comments</b></h4></td>
+                                <td><h4><b>Amount</b></h4></td>
+                                <td><h4><b>Category</b></h4></td>
+                                
+<!--                                <td><h4><b></b></h4></td>-->
+                            </tr>
+
+                            <tr ng-repeat="transaction in transactions | unique:vm.selectedStatus as results" on-finish-render="ngRepeatFinished" >
+                                
+                                <td>{{transaction.transactionDate | date:'yyyy-MM-dd HH:mm'}}</td>
+                                <td>{{transaction.transactionType.accountType}}</td>
+                                <td>{{transaction.counterPartyAccount.accountRefNumber}}</td>
+                                <td>{{transaction.comments}}</td>
+                                <td>{{transaction.amount}}</td>
+                                <td>{{transaction.mccCode.irsDescription}}</td>
+                                
+                                
+                                <td>
+                                    <md-button id="myBtn" height="42" class="md-raised md-warn" type="button" ng-click="showMap()">LOL</md-button>
+                                </td>
+
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+
+                </div>         
+            </div><!-- /.col -->
+        </div>
+        
+<!--
+        <div ng-show="hoverEdit" class="animate-show row">
+            <div class="col-xs-12">
+                <div class="panel panel-warning">
+                    <div class="panel-body">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3358.6912101940134!2d77.01313021429891!3d11.036009868208257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8578b70408b17%3A0x7dfa27af6efe18bd!2sRanjithprabhu+K!5e1!3m2!1sen!2sin!4v1453522828509" height="450" frameborder="0" style="border:0;width:100%;" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+-->
+
+    </section><!-- /.content -->
+
+</div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Some text in the Modal..</p>
+  </div>
+
+</div>
+
+<div class="modal fade modal-notify" my-modal id="noResultModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                
+                <div class="text-center">
+                    <img src="http://i3.kym-cdn.com/photos/images/original/000/652/022/3d9.png" class="user-image" alt="User Image" align="center" style="width:100px; height:100px;"/>
+                </div>
+                
+                </br>
+                
+                <h5 for="message-text" class="control-label"><b>Sorry something went wrong. Please try again later.</b></h5>
+
+                <md-button class="md-raised md-warn pull-right" data-dismiss="modal" style="margin-top:20px;margin-left:40px;">Close</md-button>
+                
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="modal modal-static fade" my-modal-process id="processing-modal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <img src="http://melaha2016.ainegypt.org/images/pg.gif" style="width:85px;height:71px;" class="icon" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

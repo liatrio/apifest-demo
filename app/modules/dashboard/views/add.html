@@ -1,0 +1,157 @@
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Add New
+
+    </h1>
+
+    <ol class="breadcrumb">
+        <li>
+            <a>
+                <i class="fa fa-dashboard"></i>
+                Dashboard</a>
+        </li>
+
+        <li class="active">Add</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <div class="col-md-6">
+
+            <div class="panel panel-info" style="min-height:453px;">
+                <div class="panel-heading">
+                    Add new Group
+                </div>
+
+                <div class="panel-body">
+
+                    <form data-ng-submit="vm.groupSubmit();">
+
+                        <md-content class="autoScroll">
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Name of the Group</label>
+                                <md-icon class="fa fa-user"></md-icon>
+                                <input type="text" required name="name" data-ng-model="vm.groupDetail.name">
+                            </md-input-container>
+
+                            <div class="pull-right">
+                                <md-button class="md-raised md-primary" type="submit">Add to groups <i class="fa fa-angle-double-right"></i></md-button>
+                                <md-button class="md-raised md-warn" type="reset">Clear <i class="fa fa-trash-o"></i></md-button>
+                            </div>
+
+                        </md-content>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info" style="min-height:453px;">
+                <div class="panel-heading">
+                    Add new Contact
+                </div>
+
+                <div class="panel-body">
+
+                    <form data-ng-submit="vm.submitForm();" name="vm.contactForm">
+
+                        <md-content class="autoScroll">
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Name</label>
+                                <md-icon class="fa fa-user"></md-icon>
+                                <input type="text" required name="name" data-ng-model="vm.userDetail.name">
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Contact</label>
+                                <md-icon class="fa fa-phone"></md-icon>
+                                <input type="text" required name="phone" data-ng-model="vm.userDetail.phone" pattern="[\+]\d{10,20}">
+                            </md-input-container>
+
+
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Group</label>
+                                <md-icon class="fa fa-clipboard"></md-icon>
+                                </br>
+
+                                <select name="singleSelect" id="singleSelect" ng-model="data.singleSelect" class="form-control">
+                                    <option value="">---Please select---</option>
+                                    <option value="{{group._id}}" ng-repeat="group in groupName" on-finish-render="ngRepeatFinished">{{group.name}}</option> 
+                                </select>
+
+
+                            </md-input-container>
+
+
+
+                            <div class="pull-right">
+                                <md-button class="md-raised md-primary" type="submit">Add <i class="fa fa-angle-double-right"></i></md-button>
+                                <md-button class="md-raised md-warn" type="reset">Clear <i class="fa fa-trash-o"></i></md-button>
+                            </div>
+
+                        </md-content>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+</section><!-- /.content -->
+
+<div class="modal fade modal-notify" my-modal id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <img src="https://cdn3.iconfinder.com/data/icons/gray-toolbar-4/512/thumb_up-512.png" class="user-image" alt="User Image" align="center" style="width:50px;height:50px;"/>
+                </div>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -60px;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </br>
+                
+                <p for="message-text" class="control-label"><b>Success new <span ng-bind="name"></span> has been Added</b></p>
+
+                <md-button class="md-raised md-warn pull-right" data-dismiss="modal">Close</md-button>
+                
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="modal modal-static fade" my-modal-process id="processing-modal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <img src="http://melaha2016.ainegypt.org/images/pg.gif" style="width:85px;height:71px;" class="icon" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
