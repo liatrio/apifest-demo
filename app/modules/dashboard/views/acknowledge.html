@@ -1,12 +1,12 @@
 <section class="content-header">
     
     <h1 style="color: #439ad5;">
-        Dashboard
+<!--        Accounts-->
     </h1>
     
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">Details</li>
+        <li class="active">{{vm.state}}</li>
     </ol>
 
 </section>
@@ -17,16 +17,14 @@
      
          
     <section class="content">
-        
         <!-- row -->
         <div class="row">
            <div class="col-md-6">
-
             </div>
 
             <div class="pull-right" ng-show="vm.showBroadcast == 2"  ng-if="vm.showBroadcast == 2" style="margin-top:10px;">
 
-                <img src="http://changelives.org/wp-content/uploads/2016/04/back-button.jpg" style="width:90px; height:30px; margin-right:50px;" class="user-image" alt="User Image" ng-click="vm.showBroadcast = 1"/>
+                <img src="http://changelives.org/wp-content/uploads/2016/04/back-button.jpg" style="width:90px; height:30px; margin-right:50px;" class="user-image" alt="User Image" ng-click="vm.showBroadcast = 1; vm.state = 'Accounts';"/>
 
             </div>
 
@@ -35,26 +33,30 @@
 
             <br>
 
-        <div class="box box-info" ng-show="vm.showBroadcast == 1">
+        <div class="box box-info" ng-show="vm.showBroadcast == 1" ng-if="vm.showBroadcast == 1">
 
             <div class="container-fluid">
 
                 <table class="table table-list-search">
                     <tbody>
                         <tr>
-                            <td><h4><b>Account Ref Number</b></h4></td>
+                            <td><h4><b>Account Number</b></h4></td>
+                            <td><h4><b>Account Opening Date</b></h4></td>
                             <td><h4><b>Account Type</b></h4></td>
                             <td><h4><b>Bank Name</b></h4></td>
                             <td><h4><b>Balance</b></h4></td>
+                            <td><h4><b>Status</b></h4></td>
                             <td><b></b></td>
                         </tr>
                         
                         <!--  -->
-                        <tr ng-repeat = "accountDetail in accountDetails" on-finish-render="ngRepeatFinished">
-                            <td>{{accountDetail.accountRefNumber}}</td>
+                        <tr ng-repeat= "accountDetail in accountDetails.content" on-finish-render="ngRepeatFinished">
+                            <td>{{accountDetail.accountNumber}}</td>
+                            <td>{{accountDetail.accountOpeningDate | date:'yyyy-MM-dd HH:mm'}}</td>
                             <td>{{accountDetail.accountType.accountType}}</td>
                             <td>{{accountDetail.businessUnit.bank.bankName}}</td>
                             <td>{{accountDetail.balance}}</td>
+                            <td>{{accountDetail.status}}</td>
                             <td><md-button class="md-raised md-warn" type="button" ng-click="vm.viewTransaction(accountDetail.accountId)">View Transaction Details</md-button></td>
 
                         </tr>
@@ -77,19 +79,6 @@
                            <div id="chartIdType" class="customChart"></div>
                            <h4 class="website-text">Transactions by Type</h4>
                        </div>
-
-<!--
-                        <select name="dropdown" ng-model="vm.selectedStatus" ng-change="onStatusChange()" class="form-control">
-                            <option value="">Show All</option>
-                            <option value="Book Stores">bookStores</option>
-                            <option value="Car Rental">carRental</option>
-                            <option value="Fast Food Restaurants">fastFoodRestaurants</option>
-                            <option value="Drug Stores and Pharmacies">drugStoresAndPharmacies</option>
-                        </select>
-                        </br></br>
--->
-                       
-<!--                       <div id="chartIdType" class="customChart"></div>-->
 
                     </div>
 
@@ -114,26 +103,22 @@
                                 <td><h4><b>Transaction Date</b></h4></td>
                                 <td><h4><b>Transaction Type</b></h4></td>
                                 <td><h4><b>To Account Number</b></h4></td>
-                                <td><h4><b>Comments</b></h4></td>
+<!--                                <td><h4><b>Comments</b></h4></td>-->
                                 <td><h4><b>Amount</b></h4></td>
                                 <td><h4><b>Category</b></h4></td>
                                 
-<!--                                <td><h4><b></b></h4></td>-->
+                                <td><h4><b></b></h4></td>
                             </tr>
 
-                            <tr ng-repeat="transaction in transactions | unique:vm.selectedStatus as results" on-finish-render="ngRepeatFinished" >
+                            <tr ng-repeat="transaction in transactions.content" on-finish-render="ngRepeatFinished" >
                                 
                                 <td>{{transaction.transactionDate | date:'yyyy-MM-dd HH:mm'}}</td>
                                 <td>{{transaction.transactionType.accountType}}</td>
-                                <td>{{transaction.counterPartyAccount.accountRefNumber}}</td>
-                                <td>{{transaction.comments}}</td>
+                                <td>{{transaction.counterPartyAccount.counterPartyAccount}}</td>
+<!--                                <td>{{transaction.comments}}</td>-->
                                 <td>{{transaction.amount}}</td>
                                 <td>{{transaction.mccCode.irsDescription}}</td>
-                                
-                                
-                                <td>
-                                    <md-button id="myBtn" height="42" class="md-raised md-warn" type="button" ng-click="showMap()">LOL</md-button>
-                                </td>
+                                <td><md-button class="md-raised md-warn" type="button" ng-click="vm.viewMap(transaction.latitude, transaction.longitude)">View Transaction Location</md-button></td>
 
                             </tr>
                             
@@ -157,7 +142,7 @@
         </div>
 -->
 
-    </section><!-- /.content -->
+    </section>
 
 </div>
 

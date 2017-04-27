@@ -55,7 +55,7 @@
                         <!--  -->
                         <tr ng-repeat= "accountDetail in accountDetails.content" on-finish-render="ngRepeatFinished">
                             <td>{{accountDetail.accountNumber}}</td>
-                            <td>{{accountDetail.accountOpeningDate}}</td>
+                            <td>{{accountDetail.accountOpeningDate | date:'yyyy-MM-dd HH:mm'}}</td>
                             <td>{{accountDetail.accountType.accountType}}</td>
                             <td>{{accountDetail.businessUnit.bank.bankName}}</td>
                             <td>{{accountDetail.balance}}</td>
@@ -106,11 +106,11 @@
                                 <td><h4><b>Transaction Date</b></h4></td>
                                 <td><h4><b>Transaction Type</b></h4></td>
                                 <td><h4><b>To Account Number</b></h4></td>
-                                <td><h4><b>Comments</b></h4></td>
+<!--                                <td><h4><b>Comments</b></h4></td>-->
                                 <td><h4><b>Amount</b></h4></td>
                                 <td><h4><b>Category</b></h4></td>
                                 
-<!--                                <td><h4><b></b></h4></td>-->
+                                <td><h4><b></b></h4></td>
                             </tr>
 
                             <tr ng-repeat="transaction in transactions.content" on-finish-render="ngRepeatFinished" >
@@ -118,9 +118,10 @@
                                 <td>{{transaction.transactionDate | date:'yyyy-MM-dd HH:mm'}}</td>
                                 <td>{{transaction.transactionType.accountType}}</td>
                                 <td>{{transaction.counterPartyAccount.counterPartyAccount}}</td>
-                                <td>{{transaction.comments}}</td>
+<!--                                <td>{{transaction.comments}}</td>-->
                                 <td>{{transaction.amount}}</td>
                                 <td>{{transaction.mccCode.irsDescription}}</td>
+                                <td><md-button class="md-raised md-warn" type="button" ng-click="vm.viewTransaction(accountDetail.accountId)">View Transaction Location</md-button></td>
 
                             </tr>
                             

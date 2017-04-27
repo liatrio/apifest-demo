@@ -31,7 +31,7 @@ function ($rootScope, $scope, $state, $location, loginService, Flash, apiService
                     localStorage.clear();
                 }, (60 * 60 * 1000));
 
-                $state.go('app.account');
+                $state.go('app.dashboard');
 
             } else {
                 console.log("Sorry, your browser does not support Web Storage...");

@@ -23,7 +23,9 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings) {
                     title: "Dashboard",
                     icon: "book",
                     state: "dashboard"
-                },
+                }
+                /*
+                ,
                 {
                     title: "Add",
                     icon: "plus",
@@ -39,6 +41,7 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings) {
                     icon: "book",
                     state: "Account"
                 }
+                */
             ];
 
             //set the theme selected
