@@ -38,6 +38,7 @@ function ($rootScope, $scope, $state, $location, loginService, Flash, apiService
             }
             
         }, function(reject) {
+            console.log(reject);
             Flash.create('danger', 'Invalid UserName or Password', 'large-text');
         });
     };

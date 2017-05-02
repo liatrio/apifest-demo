@@ -3,7 +3,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
 
     var apiService = {};
     var apiBase = appSettings.apiBase;
-    var accessToken = 'Bearer 9bacbaf6-d87f-30a1-887a-2eea8325592b';
+    var accessToken = 'Bearer 9a0cfe2b-c8e8-3453-8ab5-a775668c4b01';
     
     $http.defaults.headers.put = {
         'Access-Control-Allow-Origin': '*',

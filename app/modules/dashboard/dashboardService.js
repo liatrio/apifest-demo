@@ -19,11 +19,12 @@ dashboard.service('dashboardService', ['$http', '$q', 'Flash', 'apiService', fun
         return deferred.promise;
     };
     
-      var getTransaction = function () {
+      var getTransaction = function (accountId) {
+         console.log("coming to Send Message controller x x x 1"  + accountId);
         var deferred = $q.defer();
-        
-        apiService.getTransaction("transactions/v1.0.0/transaction/findByAccountId/1?page=0&size=10", localStorage.xAuthorizationToken).then(function (response) {
-            
+         console.log("coming to Send Message controller x x x 2");
+        apiService.getTransaction("transactions/v1.0.0/transaction/findByAccountId/"+accountId+"?page=0&size=10", localStorage.xAuthorizationToken).then(function (response) {
+             console.log("coming to Send Message controller x x x 3");
             if (response){
                 deferred.resolve(response);
             }else
