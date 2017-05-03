@@ -11,7 +11,7 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings) {
             
         }else{
             
-            console.log('getting in to the app controller');
+            
             
             $scope.userName = localStorage.getItem("username");
 

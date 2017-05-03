@@ -9,7 +9,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
         }else{
 
             var vm = this;
-            console.log("coming to Send Message controller");
+            
             
             vm.showBroadcast = 0;
             $scope.accountDetails= {};
@@ -30,7 +30,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
             });
             
             vm.viewMap = function (latitude, longitude) {
-                //console.log(latitude + " - " + longitude);                 
+                              
                 var div = document.getElementById('iframeDiv');
 
                 div.innerHTML = div.innerHTML + "<iframe id='iframe' width='100%' height='450' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/place?q="+latitude+","+longitude+"&amp;key=AIzaSyDMkqUVmx2-c5wpeWkg-DOtKfQyW938ywc'></iframe>";
@@ -60,19 +60,13 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
                 
                 dashboardService.getTransaction(accountId).then(function (response) {
                     
-                    vm.state = "Transactions";
-                    
-                    // console.log(response.content[8].latitude + " - " + response.content[0].longitude);
-                    console.log(response);
-                    
+                    vm.state = "Transactions";                  
                     $scope.transactions = response;
-                    $scope.modelDismiss();
-                    
+                    $scope.modelDismiss();                    
                     if($scope.transactions.content.length == 0){
                         $('#noResultModal').modal('show');
                     }
-                    
-   
+                       
                     // PIE Chart Code ****************************
 
                     var airlines = 0; var autoRental = 0; var groceries = 0; var automotive = 0; var familyClothing = 0; 

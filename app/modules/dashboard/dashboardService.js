@@ -21,13 +21,19 @@ dashboard.service('dashboardService', ['$http', '$q', 'Flash', 'apiService', fun
     };
     
       var getTransaction = function (accountId) {
-         console.log("coming to Send Message controller x x x 1"  + accountId);
+         
         var deferred = $q.defer();
-         console.log("coming to Send Message controller x x x 2");
+        var re;        
         apiService.getTransaction("transactions/v1.0.0/transaction/findByAccountId/"+accountId+"?page=0&size=10", localStorage.xAuthorizationToken).then(function (response) {
-             console.log("coming to Send Message controller x x x 3");
+            
             if (response){
-                deferred.resolve(response);
+                re=response;
+                apiService.getTransaction("transactions/v1.0.0/transaction/findByAccountId/"+accountId+"?page=1&size=10", localStorage.xAuthorizationToken).then(function (response) {
+                for (i = 0; i < 10; i++) { 
+                    re.content.push(response.content[i]);
+                }                    
+                });
+                deferred.resolve(re);
             }else
                 deferred.reject("Something went wrong while processing your request. Please Contact Administrator.");
             
@@ -35,12 +41,10 @@ dashboard.service('dashboardService', ['$http', '$q', 'Flash', 'apiService', fun
                 deferred.reject(response);
         });
         return deferred.promise;
-    };
-    
+    };   
     
     dashboardService.getAccounts = getAccounts;
-    dashboardService.getTransaction = getTransaction;
-    
+    dashboardService.getTransaction = getTransaction;    
     return dashboardService;
     
 
