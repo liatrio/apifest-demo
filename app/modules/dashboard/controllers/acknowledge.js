@@ -79,11 +79,12 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
                     var airlines = 0; var autoRental = 0; var groceries = 0; var automotive = 0; var familyClothing = 0; 
                     var electronics = 0; var restaurants = 0; var drugStores = 0; var bookStores = 0; var others = 0; 
                     
-                    var atm = 0;  var charge = 0;  var check = 0;  var deposit = 0;  var withdrawal = 0;  var online = 0;
+                    var atm = 0;  var charge = 0;  var check = 0;  var deposit = 0;  var withdrawal = 0;  var online = 0; var totalType=0; var totalmcc=0;
 
                     angular.forEach($scope.transactions.content, function(value, key) {
                         
                         if(value.mccCode){
+                            totalmcc=totalmcc+1;
                             if(value.mccCode.mccCode == 3000){
                                 airlines = airlines + 1;
                             }else if(value.mccCode.mccCode == 3351){
@@ -108,6 +109,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
                         }
                         
                         if(value.transactionType) {
+                            totalType=totalType+1;
                             if(value.transactionType.accountType == "ATM"){
                                 atm = atm + 1;
                             }else if(value.transactionType.accountType == "CHARGE"){
@@ -145,17 +147,16 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
                                 toolTipContent: "{legendText}: <strong>{y}%</strong>",
                                 indexLabel: "{label} {y}%",
                                 dataPoints: [
-                                    {  y: airlines, legendText: "Airlines", label: "Airlines", exploded: true, color: "#ff704d"},
-                                    {  y: autoRental, legendText: "Auto Rental", label: "Auto Rental", color: "#ffcc99" },
-                                    {  y: groceries, legendText: "Grocery Stores, Supermarkets", label: "Grocery Stores, Supermarkets", color: "#5F1EB3" },
-                                    {  y: automotive, legendText: "Automotive Parts, Accessories Stores", label: "Automotive Parts, Accessories Stores", color: "#436EEE" },
-                                   
-                                    {  y: familyClothing, legendText: "Family Clothing Stores", label: "Family Clothing Stores", color: "#b3ffb3" },
-                                    {  y: electronics, legendText: "Electronic Sales", label: "Electronic Sales", color: "#6AD863" },
-                                    {  y: restaurants, legendText: "Fast Food Restaurants", label: "Fast Food Restaurants", color: "#51D8D6" },
-                                    {  y: drugStores, legendText: "Drug Stores and Pharmacies", label: "Drug Stores and Pharmacies", color: "#D8515B" },
-                                    {  y: bookStores, legendText: "Book Stores", label: "Book Stores", color: "#E38221" },
-                                    {  y: others, legendText: "Other", label: "Other", color: "#DDEE63" }
+                                    {  y: per(airlines,totalmcc), legendText: "Airlines", label: "Airlines", exploded: true, color: "#ff704d"},
+                                    {  y: per(autoRental,totalmcc), legendText: "Auto Rental", label: "Auto Rental", color: "#ffcc99" },
+                                    {  y: per(groceries,totalmcc), legendText: "Grocery Stores, Supermarkets", label: "Grocery Stores, Supermarkets", color: "#5F1EB3" },
+                                    {  y: per(automotive,totalmcc), legendText: "Automotive Parts, Accessories Stores", label: "Automotive Parts, Accessories Stores", color: "#436EEE" },                                   
+                                    {  y: per(familyClothing,totalmcc), legendText: "Family Clothing Stores", label: "Family Clothing Stores", color: "#b3ffb3" },
+                                    {  y: per(electronics,totalmcc), legendText: "Electronic Sales", label: "Electronic Sales", color: "#6AD863" },
+                                    {  y: per(restaurants,totalmcc), legendText: "Fast Food Restaurants", label: "Fast Food Restaurants", color: "#51D8D6" },
+                                    {  y: per(drugStores,totalmcc), legendText: "Drug Stores and Pharmacies", label: "Drug Stores and Pharmacies", color: "#D8515B" },
+                                    {  y: per(bookStores,totalmcc), legendText: "Book Stores", label: "Book Stores", color: "#E38221" },
+                                    {  y: per(others,totalmcc), legendText: "Other", label: "Other", color: "#DDEE63" }
                                 ]
                             }
                         ]
@@ -183,12 +184,12 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
                                 toolTipContent: "{legendText}: <strong>{y}%</strong>",
                                 indexLabel: "{label} {y}%",
                                 dataPoints: [
-                                    {  y: atm, legendText: "ATM", label: "ATM", color: "#ff704d"},
-                                    {  y: charge, legendText: "CHARGE", label: "CHARGE", color: "#6AD863"},
-                                    {  y: check, legendText: "CHECK", label: "CHECK", color: "#51D8D6"},
-                                    {  y: deposit, legendText: "DEPOSIT", label: "DEPOSIT", color: "#D8515B"},
-                                    {  y: withdrawal, legendText: "WITHDRAWAL", label: "WITHDRAWAL", color: "#ffcc99"},
-                                    {  y: online, legendText: "Online", label: "Online", exploded: true, color: "#DDEE63" }
+                                    {  y: per(atm,totalType), legendText: "ATM", label: "ATM", color: "#ff704d"},
+                                    {  y: per(charge,totalType), legendText: "CHARGE", label: "CHARGE", color: "#6AD863"},
+                                    {  y: per(check,totalType), legendText: "CHECK", label: "CHECK", color: "#51D8D6"},
+                                    {  y: per(deposit,totalType), legendText: "DEPOSIT", label: "DEPOSIT", color: "#D8515B"},
+                                    {  y: per(withdrawal,totalType), legendText: "WITHDRAWAL", label: "WITHDRAWAL", color: "#ffcc99"},
+                                    {  y: per(online,totalType), legendText: "Online", label: "Online", exploded: true, color: "#DDEE63" }
                                 ]
                             }
                         ]
@@ -210,4 +211,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
     }
 
 }]);
+function per(num, amount){
+  return num/amount*100;
+}
 

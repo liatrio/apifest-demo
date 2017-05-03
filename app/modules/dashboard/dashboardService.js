@@ -10,8 +10,9 @@ dashboard.service('dashboardService', ['$http', '$q', 'Flash', 'apiService', fun
             
             if (response){
                 deferred.resolve(response);
-            }else
+            }else{
                 deferred.reject("Something went wrong while processing your request. Please Contact Administrator.");
+            }
             
         },function (response) {
                 deferred.reject(response);

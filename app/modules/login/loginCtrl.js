@@ -30,8 +30,16 @@ function ($rootScope, $scope, $state, $location, loginService, Flash, apiService
                 $timeout(function () {
                     localStorage.clear();
                 }, (60 * 60 * 1000));
-
-                $state.go('app.dashboard');
+                apiService.getAccounts("accounts/v1.0.0/account?page=0&size=10", localStorage.xAuthorizationToken).then(function(response) {
+                       // console.log(response.state);
+                        //if(response.state!=='undefined'){
+                             $state.go('app.dashboard');
+                        //}
+                        
+                }, function(response) {       
+                 Flash.create('danger', 'Sorry, admins are not allowed to login', 'large-text');
+            });
+               
 
             } else {
                 console.log("Sorry, your browser does not support Web Storage...");
@@ -46,7 +54,7 @@ function ($rootScope, $scope, $state, $location, loginService, Flash, apiService
         //get registration details
     vm.register = function () {
         if (vm.setUser.confirmPassword == vm.setUser.Password){
-            Flash.create('danger', 'Sirry Cant register at the moment', 'large-text');
+            Flash.create('danger', 'Sorry Cant register at the moment', 'large-text');
         }
     };
 
