@@ -30,11 +30,10 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
             });
             
             vm.viewMap = function (latitude, longitude) {
-                console.log(latitude + " - " + longitude);
-                
+                //console.log(latitude + " - " + longitude);                 
                 var div = document.getElementById('iframeDiv');
 
-                div.innerHTML = div.innerHTML + "<iframe id='iframe' src='https://maps.google.com/maps?q=" + longitude + "," + latitude + "&hl=es;z=14&amp;output=embed' height='450' frameborder='0' style='border:0;width:100%;' allowfullscreen></iframe>";
+                div.innerHTML = div.innerHTML + "<iframe id='iframe' width='100%' height='450' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/place?q="+latitude+","+longitude+"&amp;key=AIzaSyDMkqUVmx2-c5wpeWkg-DOtKfQyW938ywc'></iframe>";
                 
                 var modal = document.getElementById('myModal');
 
