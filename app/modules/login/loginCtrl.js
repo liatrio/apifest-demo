@@ -30,7 +30,7 @@ function ($rootScope, $scope, $state, $location, loginService, Flash, apiService
                 $timeout(function () {
                     localStorage.clear();
                 }, (60 * 60 * 1000));
-                apiService.getAccounts("accounts/v1.0.0/account?page=0&size=10", localStorage.xAuthorizationToken).then(function(response) {
+                apiService.getAccounts("Account/v2.0.0/account?page=0&size=10", localStorage.xAuthorizationToken).then(function(response) {
                         $state.go('app.dashboard');                       
                         
                 }, function(response) {       

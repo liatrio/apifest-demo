@@ -8,7 +8,7 @@ login.service('loginService', ['$http', '$q', 'Flash', 'apiService', function ($
     var accessLogin = function (parameters) {
         var deferred = $q.defer();
         
-        apiService.getLogin("security/v1.0.0/login", parameters).then(function (response) {
+        apiService.getLogin("Security/v2.0.0/login", parameters).then(function (response) {
             if (response){
                 deferred.resolve(response);
             }else{
