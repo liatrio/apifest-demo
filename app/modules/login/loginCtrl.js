@@ -19,8 +19,9 @@ function ($rootScope, $scope, $state, $location, loginService, Flash, apiService
         loginService.accessLogin(vm.getUser).then(function (response) {
             
             if (typeof(Storage) !== "undefined") {
-                localStorage.clear();
 
+                //Keep the authorization token in local storage. Or else store it in root scope
+                localStorage.clear();
                 localStorage.setItem("success", true);
                 localStorage.setItem("xAuthorizationToken", response.token);
                 localStorage.setItem("username", vm.getUser.username);
